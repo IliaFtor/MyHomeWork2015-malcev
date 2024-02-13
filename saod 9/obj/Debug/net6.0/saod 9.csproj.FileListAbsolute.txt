@@ -1,0 +1,14 @@
+C:\Users\ryv26\source\repos\saod 9\bin\Debug\net6.0\saod 9.exe
+C:\Users\ryv26\source\repos\saod 9\bin\Debug\net6.0\saod 9.deps.json
+C:\Users\ryv26\source\repos\saod 9\bin\Debug\net6.0\saod 9.runtimeconfig.json
+C:\Users\ryv26\source\repos\saod 9\bin\Debug\net6.0\saod 9.dll
+C:\Users\ryv26\source\repos\saod 9\bin\Debug\net6.0\saod 9.pdb
+C:\Users\ryv26\source\repos\saod 9\obj\Debug\net6.0\saod 9.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ryv26\source\repos\saod 9\obj\Debug\net6.0\saod 9.AssemblyInfoInputs.cache
+C:\Users\ryv26\source\repos\saod 9\obj\Debug\net6.0\saod 9.AssemblyInfo.cs
+C:\Users\ryv26\source\repos\saod 9\obj\Debug\net6.0\saod 9.csproj.CoreCompileInputs.cache
+C:\Users\ryv26\source\repos\saod 9\obj\Debug\net6.0\saod 9.dll
+C:\Users\ryv26\source\repos\saod 9\obj\Debug\net6.0\refint\saod 9.dll
+C:\Users\ryv26\source\repos\saod 9\obj\Debug\net6.0\saod 9.pdb
+C:\Users\ryv26\source\repos\saod 9\obj\Debug\net6.0\saod 9.genruntimeconfig.cache
+C:\Users\ryv26\source\repos\saod 9\obj\Debug\net6.0\ref\saod 9.dll

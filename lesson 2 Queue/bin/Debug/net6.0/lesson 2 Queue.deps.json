@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "lesson 2 Queue/1.0.0": {
+        "runtime": {
+          "lesson 2 Queue.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "lesson 2 Queue/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
