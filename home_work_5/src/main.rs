@@ -1,42 +1,50 @@
-struct Test {
-    id: i32,
-}
+#![allow(warnings)] 
+static mut COUNT_TEST: u32 = 0;
 
-impl Test {
-    fn new(id: i32) -> Test {
-        println!("Test {} created", id);
-        Test { id }
+struct Test{
+    num: i32,
+}
+impl Test{
+    fn new() -> Self{
+        unsafe{
+            COUNT_TEST += 1;
+        
+            println!("Создан, всего: {}", COUNT_TEST);
+        }
+        Test{num: 1,}
     }
 }
-
 impl Drop for Test {
     fn drop(&mut self) {
-        println!("Test {} destroyed", self.id);
-    }
-}
-
-static mut COUNT: i32 = 0;
-
-impl Test {
-    fn get_count() -> i32 {
-        unsafe {
-            COUNT
+        unsafe{
+        COUNT_TEST -= 1;
+        println!("Уничтожен, осталось: {}", COUNT_TEST);
+        
         }
     }
 }
-
-impl Drop for Test {
-    fn drop(&mut self) {
+impl Clone for Test {
+    
+    fn clone(&self) -> Self {
         unsafe {
-            COUNT -= 1;
+            COUNT_TEST += 1;
         }
-        println!("Test {} destroyed", self.id);
+        Test{ num: self.num }
     }
 }
-
-fn main() {
-    let _ = Test::new(1);
-    let _ = Test::new(2);
-
-    println!("Objects count: {}", Test::get_count());
+static mut t: Test = Test{num: 2};
+fn main(){
+    let mut test = Test::new();
+    let mut d_test = Box::new(Test::new());
+    {
+        let mut d_arr_test = vec![];
+        for i in 0..10{
+            d_arr_test.push(Test::new());
+        }
+    }
+    Foo(test.clone());
+    Foo(test.clone());
+}
+fn Foo(te: Test){
+    println!("in foo");
 }
