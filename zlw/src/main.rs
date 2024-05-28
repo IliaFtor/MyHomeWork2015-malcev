@@ -1,6 +1,6 @@
 use std::collections::HashMap;
-use std::io::{self, Read};
 use std::fs::File;
+use std::io::{self, Read, Write};
 use std::time::Instant;
 
 fn compress(data: &[u8]) -> Vec<u32> {
@@ -67,25 +67,41 @@ fn decompress(data: &[u32]) -> Vec<u8> {
 }
 
 fn main() -> io::Result<()> {
-    let mut file = File::open("C:/Users/ryv26/OneDrive/Рабочий стол/ris/zlw/src/data.txt")?;
+    // Чтение исходного файла
+    let mut file = File::open("C:/Users/ryv26/OneDrive/Рабочий стол/ris/zlw/src/text.txt")?;
     let mut input_data = Vec::new();
     file.read_to_end(&mut input_data)?;
 
+    // Замер времени сжатия
     let start_compress = Instant::now();
     let compressed_data = compress(&input_data);
     let compress_duration = start_compress.elapsed();
 
-    println!("Count compressed data: {:?}", compressed_data.len());
-    let slice_data = &compressed_data[1..100];
-    println!("Data: {:?}", slice_data);
+    // Запись сжатых данных в файл
+    let mut output_file = File::create("compressed_data.lzw")?;
+    for &num in &compressed_data {
+        output_file.write_all(&num.to_le_bytes())?;
+    }
 
+    println!("Размер исходных данных: {:?}", input_data.len());
+    println!("Размер сжатых данных: {:?}", compressed_data.len());
+    let slice_data = &compressed_data[..100.min(compressed_data.len())];
+    println!("Часть сжатых данных: {:?}", slice_data);
+
+    // Замер времени декомпрессии
     let start_decompress = Instant::now();
     let decompressed_data = decompress(&compressed_data);
     let decompress_duration = start_decompress.elapsed();
-    println!("Compress time: {:?}", compress_duration);
-    println!("Decompress time: {:?}", decompress_duration);
 
-    // println!("Decompressed data: {:?}", String::from_utf8_lossy(&decompressed_data));
+    println!("Время сжатия: {:?}", compress_duration);
+    println!("Время декомпрессии: {:?}", decompress_duration);
+
+    // Проверка целостности декомпрессированных данных
+    if input_data == decompressed_data {
+        println!("Декомпрессированные данные совпадают с исходными.");
+    } else {
+        println!("Декомпрессированные данные НЕ совпадают с исходными.");
+    }
 
     Ok(())
 }
